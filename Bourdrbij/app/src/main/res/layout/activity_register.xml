@@ -11,13 +11,15 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.thunderbuild.bourdrbij.LogInActivity">
 
-    <TextView
-        android:id="@+id/tv_login"
+    <ImageButton
+        android:id="@+id/ib_camera"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="75dp"
         android:text="Log in"
+        android:background="@drawable/scan_qr_button"
+        android:src="@drawable/ic_camera_alt_black_24dp"
         android:textColor="#000000"
         android:textSize="90sp"/>
 
@@ -25,7 +27,7 @@
         android:id="@+id/et_email"
         android:layout_width="250dp"
         android:layout_height="50dp"
-        android:layout_below="@id/tv_login"
+        android:layout_below="@id/ib_camera"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="125dp"
         android:background="@drawable/login_edittexts"
@@ -47,22 +49,11 @@
         android:textColorHint="#333333"/>
 
     <Button
-        android:id="@+id/bt_login"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/et_password"
-        android:padding="10dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:background="@drawable/login_button"
-        android:text="Log in"/>
-
-    <Button
         android:id="@+id/bt_register"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:layout_below="@id/bt_login"
+        android:layout_below="@id/et_password"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:background="@drawable/login_button"
