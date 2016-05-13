@@ -5,7 +5,7 @@ android {
     buildToolsVersion "23.0.3"
 
     defaultConfig {
-        applicationId "com.thunderbuild.bourdrbij"
+        applicationId "com.inno.bourdrbij"
         minSdkVersion 21
         targetSdkVersion 23
         versionCode 1

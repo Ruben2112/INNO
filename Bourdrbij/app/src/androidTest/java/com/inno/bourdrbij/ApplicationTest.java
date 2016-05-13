@@ -1,4 +1,4 @@
-package com.thunderbuild.bourdrbij;
+package com.inno.bourdrbij;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
