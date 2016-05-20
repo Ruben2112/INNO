@@ -2,6 +2,7 @@ package com.inno.bourdrbij;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -21,5 +22,8 @@ public class LogInActivity extends Activity {
                 startActivity(i);
             }
         });
+
+        Typeface tf = Typeface.createFromAsset(getAssets(),"fonts/verdana.ttf");
+        textfield.setTypeface(tf, Typeface.BOLD);
     }
 }
