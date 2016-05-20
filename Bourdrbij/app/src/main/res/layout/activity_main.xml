@@ -3,6 +3,7 @@
     android:id="@+id/drawer_layout"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:background="#dc9146"
     android:layout_height="match_parent"
     android:theme="@style/AppTheme">
 
@@ -35,7 +36,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:choiceMode="singleChoice"
-        android:background="#FFFFFF"
+        android:background="@drawable/login_background"
         android:divider="#000000"
         android:dividerHeight="1dp"/>
 </android.support.v4.widget.DrawerLayout>
