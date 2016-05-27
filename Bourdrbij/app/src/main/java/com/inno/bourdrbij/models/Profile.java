@@ -48,6 +48,7 @@ public class Profile {
         this.picturePath = null;
         this.id = 0;
         thisProfile = this;
+        this.retrievedProfile = null;
     }
 
     /**
@@ -73,16 +74,20 @@ public class Profile {
         thisProfile = this;
     }
 
+    public int getId() {
+        return this.id;
+    }
+
     /**
      * Retrieve retrievedProfile from server.
      * @param id
      */
-    public void getProfile(int id) {
+    public Profile getProfile(int id) {
         HTTPRestClient.get("retrievedProfile/" + id, null, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 try {
-                    if (response.getBoolean("succes") == true) {
+                    if (response.getBoolean("success")) {
                         JSONObject json = response.getJSONObject("data");
                         String username = json.getString("username");
                         String profession = json.getString("profession");
@@ -104,7 +109,7 @@ public class Profile {
             }
 
         });
-
+        return Profile.retrievedProfile;
     }
 
     /**
@@ -142,9 +147,7 @@ public class Profile {
 
     }
 
-    public int getId() {
-        return this.id;
-    }
+
 
     /**
      * Search for profiles in server.
