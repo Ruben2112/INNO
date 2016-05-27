@@ -1,13 +1,16 @@
-package com.inno.bourdrbij;
+package com.inno.bourdrbij.adapters;
 
 import android.app.Activity;
 import android.content.Context;
-import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+
+import com.inno.bourdrbij.models.DrawerItem;
+import com.inno.bourdrbij.views.MetamorphousTextView;
+import com.inno.bourdrbij.R;
 
 import java.util.List;
 

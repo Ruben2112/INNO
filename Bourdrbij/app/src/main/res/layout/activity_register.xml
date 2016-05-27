@@ -9,7 +9,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.inno.bourdrbij.LogInActivity">
+    tools:context=".activities.LogInActivity">
 
     <ImageButton
         android:id="@+id/ib_camera"
@@ -17,9 +17,9 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="75dp"
-        android:text="Log in"
         android:background="@drawable/scan_qr_button"
         android:src="@drawable/ic_camera_alt_black_24dp"
+        android:text="Log in"
         android:textColor="#000000"
         android:textSize="90sp"/>
 
@@ -52,11 +52,12 @@
         android:id="@+id/bt_register"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:padding="10dp"
         android:layout_below="@id/et_password"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:background="@drawable/button_states"
-        android:text="Registreer"/>
+        android:padding="10dp"
+        android:text="Registreer"
+        android:textColor="#000000"/>
 
 </RelativeLayout>

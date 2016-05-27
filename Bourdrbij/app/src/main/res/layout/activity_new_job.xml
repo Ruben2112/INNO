@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#dc9146"
+    android:theme="@style/AppTheme"
+    tools:context="com.inno.bourdrbij.activities.NewJobActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="#BC7024">
+
+        <com.inno.bourdrbij.views.MetamorphousTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nieuwe klus"
+            android:textSize="20sp"/>
+
+    </android.support.v7.widget.Toolbar>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar"
+        android:padding="16dp">
+
+        <com.inno.bourdrbij.views.MetamorphousEditText
+            android:id="@+id/et_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Titel"
+            android:lines="1"
+            android:textColor="#000000"/>
+
+        <com.inno.bourdrbij.views.MetamorphousEditText
+            android:id="@+id/et_description"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_below="@id/et_title"
+            android:hint="Omschrijving"
+            android:textColor="#000000"/>
+
+        <com.inno.bourdrbij.views.MetamorphousEditText
+            android:id="@+id/et_reward"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_below="@id/et_description"
+            android:hint="Beloning"
+            android:textColor="#000000"/>
+    </RelativeLayout>
+
+</RelativeLayout>

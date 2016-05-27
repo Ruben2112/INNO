@@ -1,4 +1,4 @@
-package com.inno.bourdrbij;
+package com.inno.bourdrbij.models;
 
 import android.graphics.drawable.Drawable;
 

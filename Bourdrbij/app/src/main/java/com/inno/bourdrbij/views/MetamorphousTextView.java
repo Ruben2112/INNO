@@ -1,4 +1,4 @@
-package com.inno.bourdrbij;
+package com.inno.bourdrbij.views;
 
 import android.content.Context;
 import android.graphics.Typeface;

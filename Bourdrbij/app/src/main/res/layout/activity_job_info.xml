@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#dc9146"
+    android:theme="@style/AppTheme"
+    tools:context="com.inno.bourdrbij.activities.NewJobActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="#BC7024">
+
+        <com.inno.bourdrbij.views.MetamorphousTextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Klus titel"
+            android:textSize="20sp"/>
+
+    </android.support.v7.widget.Toolbar>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar"
+        android:padding="16dp">
+
+        <com.inno.bourdrbij.views.MetamorphousTextView
+            android:id="@+id/et_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/login_edittexts"
+            android:lines="1"
+            android:padding="10dp"
+            android:text="Titel"
+            android:textColor="#000000"/>
+
+        <com.inno.bourdrbij.views.MetamorphousTextView
+            android:id="@+id/et_description"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_below="@id/et_title"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/login_edittexts"
+            android:padding="10dp"
+            android:text="Omschrijving"
+            android:textColor="#000000"/>
+
+        <com.inno.bourdrbij.views.MetamorphousTextView
+            android:id="@+id/et_reward"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_below="@id/et_description"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/login_edittexts"
+            android:padding="10dp"
+            android:text="Beloning"
+            android:textColor="#000000"/>
+
+        <Button
+            android:id="@+id/bt_recommend"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/et_reward"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="3dp"
+            android:background="@drawable/button_states"
+            android:padding="10dp"
+            android:text="Raad vriend aan"
+            android:textColor="#000000"/>
+
+        <Button
+            android:id="@+id/bt_send_message"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/bt_recommend"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_states"
+            android:padding="10dp"
+            android:text="Stuur bericht"
+            android:textColor="#000000"/>
+    </RelativeLayout>
+
+</RelativeLayout>
