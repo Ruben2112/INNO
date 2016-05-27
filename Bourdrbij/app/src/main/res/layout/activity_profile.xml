@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#dc9146"
+    android:theme="@style/AppTheme"
+    tools:context="com.inno.bourdrbij.activities.NewJobActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="#BC7024">
+
+        <com.inno.bourdrbij.views.MetamorphousTextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Klus titel"
+            android:textSize="20sp"/>
+
+    </android.support.v7.widget.Toolbar>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar"
+        android:padding="16dp">
+
+        <com.inno.bourdrbij.views.MetamorphousTextView
+            android:id="@+id/tv_profile_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/login_edittexts"
+            android:padding="10dp"
+            android:text="Naam: profile_name"
+            android:textColor="#000000"/>
+
+        <com.inno.bourdrbij.views.MetamorphousTextView
+            android:id="@+id/tv_profile_profession"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_profile_name"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/login_edittexts"
+            android:padding="10dp"
+            android:text="Beroep: profile_profession"
+            android:textColor="#000000"/>
+
+        <com.inno.bourdrbij.views.MetamorphousTextView
+            android:id="@+id/tv_profile_likes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_profile_profession"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/login_edittexts"
+            android:padding="10dp"
+            android:text="Houdt van: profile_likes"
+            android:textColor="#000000"/>
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -87,10 +87,15 @@ public class MainActivity extends AppCompatActivity {
 
     private void selectItem(int position) {
         DrawerItem item = dataList.get(position);
+        Intent i;
         switch(item.getItemText()){
             case "Klussen":
-                Intent i = new Intent(this, JobsActivity.class);
+                i = new Intent(this, JobsActivity.class);
                 startActivity(i);
+            case "Vrienden":
+                i = new Intent(this, FriendsListActivity.class);
+                startActivity(i);
+                break;
         }
 
         mDrawerList.setItemChecked(position, true);

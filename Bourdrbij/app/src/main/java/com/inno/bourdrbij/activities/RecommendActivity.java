@@ -103,11 +103,6 @@ public class RecommendActivity extends AppCompatActivity {
             finish();
             return true;
         }
-        if (id == R.id.action_add_job) {
-            Intent i = new Intent(this, NewJobActivity.class);
-            startActivity(i);
-            return true;
-        }
         return super.onOptionsItemSelected(item);
     }
 }
