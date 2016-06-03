@@ -1,5 +1,6 @@
 package com.inno.bourdrbij.models;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -9,14 +10,16 @@ public class Event {
 
     private int id;
     private int ownerProfileID;
+    private ArrayList<Integer> participants;
     private String location;
     private String name;
     private String description;
     private Date startTime;
     private Date endTime;
 
-    public Event(int ownerProfileID, String location, String name, String description, Date startTime, Date endTime ) {
+    public Event(int ownerProfileID, ArrayList<Integer> participants, String location, String name, String description, Date startTime, Date endTime ) {
         this.ownerProfileID = ownerProfileID;
+        this.participants = participants;
         this.location = location;
         this.name = name;
         this.description = description;
@@ -24,7 +27,7 @@ public class Event {
         this.endTime = endTime;
     }
 
-    public void addFriends(int[] friendIDs)
+    public void addFriends(ArrayList<Integer> friendIDs)
     {
 
     }
@@ -45,6 +48,14 @@ public class Event {
         this.ownerProfileID = ownerProfileID;
     }
 
+    public ArrayList<Integer> getParticipants() { return participants; }
+
+    public void setParticipants(ArrayList<Integer> participants) { this.participants = participants; }
+
+    public String getLocation() { return location; }
+
+    public void setLocation(String location) { this.location = location; }
+
     public String getAddressid() {
         return location;
     }
@@ -57,9 +68,7 @@ public class Event {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    public void setName(String name) { this.name = name;}
 
     public String getDescription() {
         return description;
@@ -81,7 +90,5 @@ public class Event {
         return endTime;
     }
 
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
-    }
+    public void setEndTime(Date endTime) { this.endTime = endTime; }
 }
