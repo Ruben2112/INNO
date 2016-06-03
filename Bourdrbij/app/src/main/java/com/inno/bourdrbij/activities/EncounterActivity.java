@@ -1,33 +1,33 @@
 package com.inno.bourdrbij.activities;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.inno.bourdrbij.R;
-import com.inno.bourdrbij.adapters.JobsAdapter;
 import com.inno.bourdrbij.adapters.NavigationDrawerAdapter;
 import com.inno.bourdrbij.models.DrawerItem;
-import com.inno.bourdrbij.models.Job;
+import com.inno.bourdrbij.models.Encounter;
+import com.inno.bourdrbij.models.Profile;
+import com.inno.bourdrbij.views.MetamorphousTextView;
 
 import java.util.ArrayList;
 
-public class JobsActivity extends AppCompatActivity {
-
+/**
+ * Created by sebas on 6/3/2016.
+ */
+public class EncounterActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -38,7 +38,7 @@ public class JobsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_jobs);
+        setContentView(R.layout.activity_encounter);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -52,66 +52,40 @@ public class JobsActivity extends AppCompatActivity {
 
         setupNavigationDrawer();
         setupMockData();
-    }
 
-    private void setupMockData() {
-        ArrayList<Job> jobs = new ArrayList<>();
-
-//        jobs.add(new Job());
-//        jobs.add(new Job());
-//        jobs.add(new Job());
-//        jobs.add(new Job());
-
-        final JobsAdapter adapter = new JobsAdapter(this, jobs);
-        ListView lvJobs = (ListView) findViewById(R.id.lv_jobs);
-        lvJobs.setAdapter(adapter);
-
-        lvJobs.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        Button btnInvite = (Button) findViewById(R.id.btnInvite);
+        btnInvite.setOnClickListener(new View.OnClickListener() {
 
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Job item = adapter.getItem(position);
+            public void onClick(View v) {
 
-                Intent intent = new Intent(JobsActivity.this, JobInfoActivity.class);
-                //TODO: send id to next activity
-                intent.putExtra("JobID", item.getId());
-                startActivity(intent);
+            }
+        });
+        Button btnIgnore = (Button) findViewById(R.id.btnIgnore);
+        btnIgnore.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
             }
         });
     }
 
-    @Override
-    protected void onPostCreate(Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-        // Sync the toggle state after onRestoreInstanceState has occurred.
-        mDrawerToggle.syncState();
-    }
 
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        mDrawerToggle.onConfigurationChanged(newConfig);
-    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_jobs, menu);
-        return true;
-    }
+    private void setupMockData() {
+        Profile senderProfile = new Profile();
+        Profile receiveProfile = new Profile();
+        Encounter encounter = new Encounter(senderProfile, receiveProfile);
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_add_job) {
-            Intent i = new Intent(this, NewJobActivity.class);
-            startActivity(i);
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+        MetamorphousTextView textTime = (MetamorphousTextView) findViewById(R.id.tvTimeMet);
+        textTime.setText(encounter.getDate().toString());
+
+        MetamorphousTextView encounterText = (MetamorphousTextView) findViewById(R.id.tvEncounterText);
+        encounterText.setText(encounter.getReceiverProfile().toString());
+
+        ImageView profileImage = (ImageView) findViewById(R.id.ivProfileImage);
+        // TODO: Set image.
     }
 
     private void setupNavigationDrawer() {
@@ -142,23 +116,6 @@ public class JobsActivity extends AppCompatActivity {
         mDrawerLayout.addDrawerListener(mDrawerToggle);
     }
 
-    private void selectItem(int position) {
-        DrawerItem item = dataList.get(position);
-        Intent i;
-        switch (item.getItemText()) {
-            case "Klussen":
-                i = new Intent(this, JobsActivity.class);
-                startActivity(i);
-            case "Vrienden":
-                i = new Intent(this, FriendsListActivity.class);
-                startActivity(i);
-                break;
-        }
-
-        mDrawerList.setItemChecked(position, true);
-        mDrawerLayout.closeDrawer(mDrawerList);
-    }
-
     private void addNavigationItems(ArrayList<DrawerItem> dataList) {
         // add navigationitems
         dataList.add(new DrawerItem("Mijn profiel", ContextCompat.getDrawable(this, R.drawable.ic_account_circle_black_24dp)));
@@ -176,5 +133,22 @@ public class JobsActivity extends AppCompatActivity {
                                 long id) {
             selectItem(position);
         }
+    }
+
+    private void selectItem(int position) {
+        DrawerItem item = dataList.get(position);
+        Intent i;
+        switch (item.getItemText()) {
+            case "Klussen":
+                i = new Intent(this, JobsActivity.class);
+                startActivity(i);
+            case "Vrienden":
+                i = new Intent(this, FriendsListActivity.class);
+                startActivity(i);
+                break;
+        }
+
+        mDrawerList.setItemChecked(position, true);
+        mDrawerLayout.closeDrawer(mDrawerList);
     }
 }
