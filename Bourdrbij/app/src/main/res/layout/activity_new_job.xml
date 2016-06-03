@@ -32,8 +32,11 @@
             android:id="@+id/et_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/login_edittexts"
             android:hint="Titel"
             android:lines="1"
+            android:padding="10dp"
             android:textColor="#000000"/>
 
         <com.inno.bourdrbij.views.MetamorphousEditText
@@ -41,7 +44,10 @@
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:layout_below="@id/et_title"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/login_edittexts"
             android:hint="Omschrijving"
+            android:padding="10dp"
             android:textColor="#000000"/>
 
         <com.inno.bourdrbij.views.MetamorphousEditText
@@ -49,7 +55,10 @@
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:layout_below="@id/et_description"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/login_edittexts"
             android:hint="Beloning"
+            android:padding="10dp"
             android:textColor="#000000"/>
     </RelativeLayout>
 

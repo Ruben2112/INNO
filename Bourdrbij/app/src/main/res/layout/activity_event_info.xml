@@ -15,10 +15,9 @@
         android:background="#BC7024">
 
         <com.inno.bourdrbij.views.MetamorphousTextView
-            android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Naam vriend"
+            android:text="Evenement titel"
             android:textSize="20sp"/>
 
     </android.support.v7.widget.Toolbar>
@@ -30,35 +29,58 @@
         android:padding="16dp">
 
         <com.inno.bourdrbij.views.MetamorphousTextView
-            android:id="@+id/tv_profile_name"
+            android:id="@+id/tv_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:background="@drawable/login_edittexts"
+            android:hint="Titel"
+            android:lines="1"
             android:padding="10dp"
-            android:text="Naam: profile_name"
             android:textColor="#000000"/>
 
         <com.inno.bourdrbij.views.MetamorphousTextView
-            android:id="@+id/tv_profile_profession"
+            android:id="@+id/tv_location"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_profile_name"
+            android:layout_below="@id/tv_title"
             android:layout_marginBottom="20dp"
             android:background="@drawable/login_edittexts"
+            android:hint="Location"
             android:padding="10dp"
-            android:text="Beroep: profile_profession"
             android:textColor="#000000"/>
 
         <com.inno.bourdrbij.views.MetamorphousTextView
-            android:id="@+id/tv_profile_likes"
+            android:id="@+id/tv_description"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tv_profile_profession"
+            android:layout_height="150dp"
+            android:layout_below="@id/tv_location"
             android:layout_marginBottom="20dp"
             android:background="@drawable/login_edittexts"
+            android:hint="Omschrijving"
             android:padding="10dp"
-            android:text="Houdt van: profile_likes"
+            android:textColor="#000000"/>
+
+        <com.inno.bourdrbij.views.MetamorphousTextView
+            android:id="@+id/tv_begindate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_description"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/login_edittexts"
+            android:hint="Begindate"
+            android:padding="10dp"
+            android:textColor="#000000"/>
+
+        <com.inno.bourdrbij.views.MetamorphousTextView
+            android:id="@+id/tv_enddate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_begindate"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/login_edittexts"
+            android:hint="Enddate"
+            android:padding="10dp"
             android:textColor="#000000"/>
     </RelativeLayout>
 

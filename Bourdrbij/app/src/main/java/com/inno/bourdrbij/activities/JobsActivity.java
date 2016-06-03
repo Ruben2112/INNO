@@ -1,6 +1,5 @@
 package com.inno.bourdrbij.activities;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -16,7 +15,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.inno.bourdrbij.R;
 import com.inno.bourdrbij.adapters.JobsAdapter;
@@ -149,8 +147,13 @@ public class JobsActivity extends AppCompatActivity {
             case "Klussen":
                 i = new Intent(this, JobsActivity.class);
                 startActivity(i);
+                break;
             case "Vrienden":
                 i = new Intent(this, FriendsListActivity.class);
+                startActivity(i);
+                break;
+            case "Evenementen":
+                i = new Intent(this, EventsActivity.class);
                 startActivity(i);
                 break;
         }

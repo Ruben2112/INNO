@@ -1,7 +1,5 @@
 package com.inno.bourdrbij.activities;
 
-import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -9,27 +7,24 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.inno.bourdrbij.R;
+import com.inno.bourdrbij.adapters.EventsAdapter;
 import com.inno.bourdrbij.adapters.NavigationDrawerAdapter;
-import com.inno.bourdrbij.adapters.ProfilesAdapter;
 import com.inno.bourdrbij.models.DrawerItem;
-import com.inno.bourdrbij.models.Profile;
+import com.inno.bourdrbij.models.Event;
 
 import java.util.ArrayList;
 
-public class FriendsListActivity extends AppCompatActivity {
+public class EventsActivity extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
@@ -41,7 +36,7 @@ public class FriendsListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_friends_list);
+        setContentView(R.layout.activity_events);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -56,49 +51,30 @@ public class FriendsListActivity extends AppCompatActivity {
         setupNavigationDrawer();
         setupMockData();
     }
-
     private void setupMockData() {
-        ArrayList<Profile> profiles = new ArrayList<>();
+        ArrayList<Event> events = new ArrayList<>();
 
-        profiles.add(new Profile());
-        profiles.add(new Profile());
-        profiles.add(new Profile());
-        profiles.add(new Profile());
+        events.add(new Event());
+        events.add(new Event());
+        events.add(new Event());
+        events.add(new Event());
 
-        final ProfilesAdapter adapter = new ProfilesAdapter(this, profiles);
-        ListView lvFriends = (ListView) findViewById(R.id.lv_friends);
-        lvFriends.setAdapter(adapter);
+        final EventsAdapter adapter = new EventsAdapter(this, events);
+        ListView lvEvents = (ListView) findViewById(R.id.lv_events);
+        lvEvents.setAdapter(adapter);
 
-        lvFriends.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        lvEvents.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Profile item = adapter.getItem(position);
+                Event item = adapter.getItem(position);
 
-                Intent i = new Intent(FriendsListActivity.this, ProfileActivity.class);
-                i.putExtra("ProfileID", item.getId());
-                startActivity(i);
+                Intent intent = new Intent(EventsActivity.this, EventInfoActivity.class);
+                //TODO: send id to next activity
+                //intent.putExtra("EventID", item.getId());
+                startActivity(intent);
             }
         });
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.menu_friends, menu);
-
-        MenuItem searchItem = menu.findItem(R.id.action_search);
-
-        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-
-        SearchView searchView = null;
-        if (searchItem != null) {
-            searchView = (SearchView) searchItem.getActionView();
-        }
-        if (searchView != null) {
-            searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-        }
-        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
@@ -115,13 +91,21 @@ public class FriendsListActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_events, menu);
+        return true;
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_heatmap) {
-            Toast.makeText(FriendsListActivity.this, "Open heatmap", Toast.LENGTH_SHORT).show();
+        if (id == R.id.action_add_event) {
+            Intent i = new Intent(this, NewEventActivity.class);
+            startActivity(i);
             return true;
         }
         return super.onOptionsItemSelected(item);

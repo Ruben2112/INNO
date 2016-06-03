@@ -92,8 +92,13 @@ public class MainActivity extends AppCompatActivity {
             case "Klussen":
                 i = new Intent(this, JobsActivity.class);
                 startActivity(i);
+                break;
             case "Vrienden":
                 i = new Intent(this, FriendsListActivity.class);
+                startActivity(i);
+                break;
+            case "Evenementen":
+                i = new Intent(this, EventsActivity.class);
                 startActivity(i);
                 break;
         }
