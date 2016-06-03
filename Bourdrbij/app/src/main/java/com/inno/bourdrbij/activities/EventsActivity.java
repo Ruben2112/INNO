@@ -160,6 +160,10 @@ public class EventsActivity extends AppCompatActivity {
                 i = new Intent(this, EventsActivity.class);
                 startActivity(i);
                 break;
+            case "Ontmoetingen":
+                i = new Intent(this, EncounterActivity.class);
+                startActivity(i);
+                break;
         }
 
         mDrawerList.setItemChecked(position, true);

@@ -1,88 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<android.support.v4.widget.DrawerLayout
+    android:id="@+id/drawer_layout"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#dc9146"
-    android:theme="@style/AppTheme"
-    tools:context="com.inno.bourdrbij.activities.NewJobActivity">
+    android:theme="@style/AppTheme">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
+    <!-- As the main content view, the view below consumes the entire
+         space available using match_parent in both dimensions. -->
+    <FrameLayout
+        android:id="@+id/content_frame"
         android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
-        android:background="#BC7024">
+        android:layout_height="match_parent">
 
-        <com.inno.bourdrbij.views.MetamorphousTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Ontmoetingen"
-            android:textSize="20sp"/>
-
-    </android.support.v7.widget.Toolbar>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/toolbar"
-        android:padding="16dp">
-
-
-        <ImageView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:id="@+id/ivProfileImage"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
-        <com.inno.bourdrbij.views.MetamorphousTextView
-            android:id="@+id/tvEncounterText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Nieuwe Ontmoeting"
-            android:textSize="10sp"
-            android:layout_below="@id/ivProfileImage"
-            android:layout_centerInParent="true"
-            />
-        <com.google.android.gms.maps.MapView
-            android:id="@+id/mvEncounterMap"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_below="@id/tvEncounterText"
-            />
         <RelativeLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_below="@+id/mvEncounterMap">
-            <com.inno.bourdrbij.views.MetamorphousTextView
-                android:id="@+id/tvTimeMet"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Tijd"
-                android:textSize="10sp"
-                android:layout_centerHorizontal="true"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Uitnodigen"
-                android:id="@+id/btnInvite"
-                android:layout_marginStart="43dp"
-                android:layout_centerVertical="true"
-                android:layout_alignParentStart="true" />
+            android:layout_height="match_parent"
+            android:background="#dc9146"
+            android:theme="@style/AppTheme"
+            tools:context="com.inno.bourdrbij.activities.NewJobActivity">
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Negeren"
-                android:id="@+id/btnIgnore"
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                android:background="#BC7024">
 
-                android:layout_marginEnd="41dp"
-                android:layout_alignTop="@+id/btnInvite"
-                android:layout_alignParentEnd="true" />
+                <com.inno.bourdrbij.views.MetamorphousTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ontmoetingen"
+                    android:textSize="20sp"/>
+
+            </android.support.v7.widget.Toolbar>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/toolbar"
+                android:padding="16dp">
+
+                <ImageView
+                    android:id="@+id/ivProfileImage"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"/>
+
+                <com.inno.bourdrbij.views.MetamorphousTextView
+                    android:id="@+id/tvEncounterText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/ivProfileImage"
+                    android:layout_centerInParent="true"
+                    android:text="Nieuwe Ontmoeting"
+                    android:textSize="10sp"
+                    />
+
+                <fragment
+                    android:id="@+id/map"
+                    android:name="com.google.android.gms.maps.SupportMapFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_below="@id/tvEncounterText"
+                    tools:context="com.inno.bourdrbij.activities.EncounterActivity"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_below="@+id/map">
+
+                    <com.inno.bourdrbij.views.MetamorphousTextView
+                        android:id="@+id/tvTimeMet"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:text="Tijd"
+                        android:textSize="10sp"/>
+
+                    <Button
+                        android:id="@+id/btnInvite"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="43dp"
+                        android:text="Uitnodigen"/>
+
+                    <Button
+                        android:id="@+id/btnIgnore"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+
+                        android:layout_alignTop="@+id/btnInvite"
+                        android:layout_marginEnd="41dp"
+                        android:text="Negeren"/>
+                </RelativeLayout>
+
+            </RelativeLayout>
+
         </RelativeLayout>
+    </FrameLayout>
+    <!-- android:layout_gravity="start" tells DrawerLayout to treat
+             this as a sliding drawer on the left side for left-to-right
+             languages and on the right side for right-to-left languages.
+             The drawer is given a fixed width in dp and extends the full height of
+             the container. A solid background is used for contrast
+             with the content view. -->
 
-
-
-    </RelativeLayout>
-
-</RelativeLayout>
+    <ListView
+        android:id="@+id/left_drawer"
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="@drawable/login_background"
+        android:choiceMode="singleChoice"
+        android:divider="#000000"
+        android:dividerHeight="1dp"/>
+</android.support.v4.widget.DrawerLayout>

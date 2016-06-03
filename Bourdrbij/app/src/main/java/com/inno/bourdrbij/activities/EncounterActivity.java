@@ -15,6 +15,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
 import com.inno.bourdrbij.R;
 import com.inno.bourdrbij.adapters.NavigationDrawerAdapter;
 import com.inno.bourdrbij.models.DrawerItem;
@@ -27,13 +32,14 @@ import java.util.ArrayList;
 /**
  * Created by sebas on 6/3/2016.
  */
-public class EncounterActivity extends AppCompatActivity {
+public class EncounterActivity extends AppCompatActivity implements OnMapReadyCallback {
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
 
     private Toolbar toolbar;
     private ArrayList<DrawerItem> dataList;
+    private GoogleMap mMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +55,10 @@ public class EncounterActivity extends AppCompatActivity {
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.setStatusBarColor(ContextCompat.getColor(this, R.color.statusbar));
+
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
 
         setupNavigationDrawer();
         setupMockData();
@@ -71,7 +81,14 @@ public class EncounterActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
 
+        // move the camera
+        LatLng EINDHOVUUUUH = new LatLng(51.451762, 5.481344);
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(EINDHOVUUUUH, 12));
+    }
 
     private void setupMockData() {
         Profile senderProfile = new Profile();
@@ -82,8 +99,9 @@ public class EncounterActivity extends AppCompatActivity {
         textTime.setText(encounter.getDate().toString());
 
         MetamorphousTextView encounterText = (MetamorphousTextView) findViewById(R.id.tvEncounterText);
-        encounterText.setText(encounter.getReceiverProfile().toString());
-
+        if (encounter.getReceiverProfile().getUsername() != null) {
+            encounterText.setText(encounter.getReceiverProfile().getUsername());
+        }
         ImageView profileImage = (ImageView) findViewById(R.id.ivProfileImage);
         // TODO: Set image.
     }
@@ -139,11 +157,24 @@ public class EncounterActivity extends AppCompatActivity {
         DrawerItem item = dataList.get(position);
         Intent i;
         switch (item.getItemText()) {
+            case "Mijn profiel":
+                i = new Intent(this, OwnProfileActivity.class);
+                startActivity(i);
+                break;
             case "Klussen":
                 i = new Intent(this, JobsActivity.class);
                 startActivity(i);
+                break;
             case "Vrienden":
                 i = new Intent(this, FriendsListActivity.class);
+                startActivity(i);
+                break;
+            case "Evenementen":
+                i = new Intent(this, EventsActivity.class);
+                startActivity(i);
+                break;
+            case "Ontmoetingen":
+                i = new Intent(this, EncounterActivity.class);
                 startActivity(i);
                 break;
         }

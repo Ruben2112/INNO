@@ -88,6 +88,14 @@
             android:name=".activities.OwnProfileActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar">
         </activity>
+        <activity
+            android:name=".activities.AcceptEncounterActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+        </activity>
+        <activity
+            android:name=".activities.EncounterActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+        </activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").

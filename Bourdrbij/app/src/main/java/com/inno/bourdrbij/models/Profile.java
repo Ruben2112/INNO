@@ -1,13 +1,15 @@
 package com.inno.bourdrbij.models;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
 import com.inno.bourdrbij.servercommunication.HTTPRestClient;
-import com.loopj.android.http.*;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.Collection;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -296,4 +298,11 @@ public class Profile {
         return friendsList;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 }
