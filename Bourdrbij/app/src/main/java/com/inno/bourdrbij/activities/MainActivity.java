@@ -89,6 +89,10 @@ public class MainActivity extends AppCompatActivity {
         DrawerItem item = dataList.get(position);
         Intent i;
         switch(item.getItemText()){
+            case "Mijn profiel":
+                i = new Intent(this, OwnProfileActivity.class);
+                startActivity(i);
+                break;
             case "Klussen":
                 i = new Intent(this, JobsActivity.class);
                 startActivity(i);

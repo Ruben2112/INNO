@@ -51,14 +51,15 @@ public class EventsActivity extends AppCompatActivity {
         setupNavigationDrawer();
         setupMockData();
     }
+
     private void setupMockData() {
         ArrayList<Event> events = new ArrayList<>();
 
+        /*events.add(new Event());
         events.add(new Event());
         events.add(new Event());
         events.add(new Event());
-        events.add(new Event());
-
+        */
         final EventsAdapter adapter = new EventsAdapter(this, events);
         ListView lvEvents = (ListView) findViewById(R.id.lv_events);
         lvEvents.setAdapter(adapter);
@@ -143,6 +144,10 @@ public class EventsActivity extends AppCompatActivity {
         DrawerItem item = dataList.get(position);
         Intent i;
         switch (item.getItemText()) {
+            case "Mijn profiel":
+                i = new Intent(this, OwnProfileActivity.class);
+                startActivity(i);
+                break;
             case "Klussen":
                 i = new Intent(this, JobsActivity.class);
                 startActivity(i);

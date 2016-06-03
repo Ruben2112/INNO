@@ -19,7 +19,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.inno.bourdrbij.R;
 import com.inno.bourdrbij.adapters.NavigationDrawerAdapter;
@@ -121,7 +120,8 @@ public class FriendsListActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_heatmap) {
-            Toast.makeText(FriendsListActivity.this, "Open heatmap", Toast.LENGTH_SHORT).show();
+            Intent i = new Intent(this, HeatmapActivity.class);
+            startActivity(i);
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -159,6 +159,10 @@ public class FriendsListActivity extends AppCompatActivity {
         DrawerItem item = dataList.get(position);
         Intent i;
         switch (item.getItemText()) {
+            case "Mijn profiel":
+                i = new Intent(this, OwnProfileActivity.class);
+                startActivity(i);
+                break;
             case "Klussen":
                 i = new Intent(this, JobsActivity.class);
                 startActivity(i);

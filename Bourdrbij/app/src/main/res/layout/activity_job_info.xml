@@ -38,7 +38,8 @@
             android:lines="1"
             android:padding="10dp"
             android:text="Titel"
-            android:textColor="#000000"/>
+            android:textColor="#000000"
+            android:textSize="18dp"/>
 
         <com.inno.bourdrbij.views.MetamorphousTextView
             android:id="@+id/et_description"
@@ -49,7 +50,8 @@
             android:background="@drawable/login_edittexts"
             android:padding="10dp"
             android:text="Omschrijving"
-            android:textColor="#000000"/>
+            android:textColor="#000000"
+            android:textSize="18dp"/>
 
         <com.inno.bourdrbij.views.MetamorphousTextView
             android:id="@+id/et_reward"
@@ -60,7 +62,8 @@
             android:background="@drawable/login_edittexts"
             android:padding="10dp"
             android:text="Beloning"
-            android:textColor="#000000"/>
+            android:textColor="#000000"
+            android:textSize="18dp"/>
 
         <Button
             android:id="@+id/bt_recommend"

@@ -55,10 +55,10 @@ public class JobsActivity extends AppCompatActivity {
     private void setupMockData() {
         ArrayList<Job> jobs = new ArrayList<>();
 
+        /*jobs.add(new Job());
         jobs.add(new Job());
         jobs.add(new Job());
-        jobs.add(new Job());
-        jobs.add(new Job());
+        jobs.add(new Job());*/
 
         final JobsAdapter adapter = new JobsAdapter(this, jobs);
         ListView lvJobs = (ListView) findViewById(R.id.lv_jobs);
@@ -144,6 +144,10 @@ public class JobsActivity extends AppCompatActivity {
         DrawerItem item = dataList.get(position);
         Intent i;
         switch (item.getItemText()) {
+            case "Mijn profiel":
+                i = new Intent(this, OwnProfileActivity.class);
+                startActivity(i);
+                break;
             case "Klussen":
                 i = new Intent(this, JobsActivity.class);
                 startActivity(i);
