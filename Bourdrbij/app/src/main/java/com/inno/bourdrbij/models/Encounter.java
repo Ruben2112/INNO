@@ -255,7 +255,7 @@ public class Encounter {
     }
 
     /**
-     * Find profile with [@param} username in server database.
+     * Find profile with [@param] username in server database.
      * @param username
      * @return Profile that matches the [@param]
      */
