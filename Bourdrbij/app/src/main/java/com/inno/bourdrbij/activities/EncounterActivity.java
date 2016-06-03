@@ -1,6 +1,7 @@
 package com.inno.bourdrbij.activities;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -88,6 +89,19 @@ public class EncounterActivity extends AppCompatActivity implements OnMapReadyCa
         // move the camera
         LatLng EINDHOVUUUUH = new LatLng(51.451762, 5.481344);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(EINDHOVUUUUH, 12));
+    }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        // Sync the toggle state after onRestoreInstanceState has occurred.
+        mDrawerToggle.syncState();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        mDrawerToggle.onConfigurationChanged(newConfig);
     }
 
     private void setupMockData() {
