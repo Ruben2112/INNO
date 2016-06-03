@@ -17,7 +17,7 @@
         <com.inno.bourdrbij.views.MetamorphousTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nieuwe klus"
+            android:text="Nieuw evenement"
             android:textSize="20sp"/>
 
     </android.support.v7.widget.Toolbar>
@@ -40,10 +40,21 @@
             android:textColor="#000000"/>
 
         <com.inno.bourdrbij.views.MetamorphousEditText
+            android:id="@+id/et_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/et_title"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/login_edittexts"
+            android:hint="Location"
+            android:padding="10dp"
+            android:textColor="#000000"/>
+
+        <com.inno.bourdrbij.views.MetamorphousEditText
             android:id="@+id/et_description"
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:layout_below="@id/et_title"
+            android:layout_below="@id/et_location"
             android:layout_marginBottom="20dp"
             android:background="@drawable/login_edittexts"
             android:hint="Omschrijving"
@@ -51,13 +62,24 @@
             android:textColor="#000000"/>
 
         <com.inno.bourdrbij.views.MetamorphousEditText
-            android:id="@+id/et_reward"
+            android:id="@+id/et_begindate"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="wrap_content"
             android:layout_below="@id/et_description"
             android:layout_marginBottom="20dp"
             android:background="@drawable/login_edittexts"
-            android:hint="Beloning"
+            android:hint="Begindate"
+            android:padding="10dp"
+            android:textColor="#000000"/>
+
+        <com.inno.bourdrbij.views.MetamorphousEditText
+            android:id="@+id/et_enddate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/et_begindate"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/login_edittexts"
+            android:hint="Enddate"
             android:padding="10dp"
             android:textColor="#000000"/>
     </RelativeLayout>
