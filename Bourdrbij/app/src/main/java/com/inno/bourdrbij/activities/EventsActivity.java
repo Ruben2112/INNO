@@ -23,6 +23,7 @@ import com.inno.bourdrbij.models.DrawerItem;
 import com.inno.bourdrbij.models.Event;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class EventsActivity extends AppCompatActivity {
 
@@ -55,11 +56,10 @@ public class EventsActivity extends AppCompatActivity {
     private void setupMockData() {
         ArrayList<Event> events = new ArrayList<>();
 
-        /*events.add(new Event());
-        events.add(new Event());
-        events.add(new Event());
-        events.add(new Event());
-        */
+        events.add(new Event(0, new ArrayList<Integer>(), "Barbecue", "Rick thuis", "", new Date(), new Date()));
+        events.add(new Event(0, new ArrayList<Integer>(), "Filmavond", "Ilse thuis", "", new Date(), new Date()));
+        events.add(new Event(0, new ArrayList<Integer>(), "Nieuwe GoT", "Martin thuis", "", new Date(), new Date()));
+
         final EventsAdapter adapter = new EventsAdapter(this, events);
         ListView lvEvents = (ListView) findViewById(R.id.lv_events);
         lvEvents.setAdapter(adapter);

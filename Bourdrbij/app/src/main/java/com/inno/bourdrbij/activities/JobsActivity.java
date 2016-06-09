@@ -55,10 +55,11 @@ public class JobsActivity extends AppCompatActivity {
     private void setupMockData() {
         ArrayList<Job> jobs = new ArrayList<>();
 
-//        jobs.add(new Job());
-//        jobs.add(new Job());
-//        jobs.add(new Job());
-//        jobs.add(new Job());
+        jobs.add(new Job(0, "Houten tafel", "", ""));
+        jobs.add(new Job(0, "Kleding reparatie", "", ""));
+        jobs.add(new Job(0, "Op zoek naar kapper", "", ""));
+        jobs.add(new Job(0, "Reparatie halsketting", "", ""));
+        jobs.add(new Job(0, "Fiets kapot", "", ""));
 
         final JobsAdapter adapter = new JobsAdapter(this, jobs);
         ListView lvJobs = (ListView) findViewById(R.id.lv_jobs);

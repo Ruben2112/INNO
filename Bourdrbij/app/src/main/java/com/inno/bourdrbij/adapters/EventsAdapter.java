@@ -42,9 +42,9 @@ public class EventsAdapter extends ArrayAdapter<Event> {
             viewHolder.tvEventEnd = (MetamorphousTextView) view.findViewById(R.id.tv_event_end);
 
             //TODO: get properties of event
-            //viewHolder.tvEventTitle.setText(event.getTitle());
-            //viewHolder.tvEventStart.setText(event.getBeginDate());
-            //viewHolder.tvEventEnd.setText(event.getEndDate());
+            viewHolder.tvEventTitle.setText(event.getLocation());
+            viewHolder.tvEventStart.setText(event.getName());
+            viewHolder.tvEventEnd.setText("");
         }
         return view;
     }

@@ -42,7 +42,7 @@ public class JobsAdapter extends ArrayAdapter<Job> {
 
             //TODO: get properties of job
             //viewHolder.tvJobStarter.setText(job.getProfile().getName());
-            //viewHolder.tvJobTitle.setText(job.getTitle());
+            viewHolder.tvJobTitle.setText(job.getName());
         }
         return view;
     }
