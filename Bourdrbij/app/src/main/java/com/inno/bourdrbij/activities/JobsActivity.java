@@ -1,6 +1,5 @@
 package com.inno.bourdrbij.activities;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -16,7 +15,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.inno.bourdrbij.R;
 import com.inno.bourdrbij.adapters.JobsAdapter;
@@ -57,10 +55,10 @@ public class JobsActivity extends AppCompatActivity {
     private void setupMockData() {
         ArrayList<Job> jobs = new ArrayList<>();
 
-        jobs.add(new Job());
-        jobs.add(new Job());
-        jobs.add(new Job());
-        jobs.add(new Job());
+//        jobs.add(new Job());
+//        jobs.add(new Job());
+//        jobs.add(new Job());
+//        jobs.add(new Job());
 
         final JobsAdapter adapter = new JobsAdapter(this, jobs);
         ListView lvJobs = (ListView) findViewById(R.id.lv_jobs);
@@ -146,11 +144,24 @@ public class JobsActivity extends AppCompatActivity {
         DrawerItem item = dataList.get(position);
         Intent i;
         switch (item.getItemText()) {
+            case "Mijn profiel":
+                i = new Intent(this, OwnProfileActivity.class);
+                startActivity(i);
+                break;
             case "Klussen":
                 i = new Intent(this, JobsActivity.class);
                 startActivity(i);
+                break;
             case "Vrienden":
                 i = new Intent(this, FriendsListActivity.class);
+                startActivity(i);
+                break;
+            case "Evenementen":
+                i = new Intent(this, EventsActivity.class);
+                startActivity(i);
+                break;
+            case "Ontmoetingen":
+                i = new Intent(this, EncounterActivity.class);
                 startActivity(i);
                 break;
         }

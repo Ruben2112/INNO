@@ -1,7 +1,5 @@
 package com.inno.bourdrbij.activities;
 
-import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -9,26 +7,23 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.inno.bourdrbij.R;
 import com.inno.bourdrbij.adapters.NavigationDrawerAdapter;
-import com.inno.bourdrbij.adapters.ProfilesAdapter;
 import com.inno.bourdrbij.models.DrawerItem;
-import com.inno.bourdrbij.models.Profile;
 
 import java.util.ArrayList;
 
-public class FriendsListActivity extends AppCompatActivity {
+public class OwnProfileActivity extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
@@ -40,7 +35,7 @@ public class FriendsListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_friends_list);
+        setContentView(R.layout.activity_own_profile);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -51,53 +46,9 @@ public class FriendsListActivity extends AppCompatActivity {
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.setStatusBarColor(ContextCompat.getColor(this, R.color.statusbar));
+        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
         setupNavigationDrawer();
-        setupMockData();
-    }
-
-    private void setupMockData() {
-        ArrayList<Profile> profiles = new ArrayList<>();
-
-        profiles.add(new Profile());
-        profiles.add(new Profile());
-        profiles.add(new Profile());
-        profiles.add(new Profile());
-
-        final ProfilesAdapter adapter = new ProfilesAdapter(this, profiles);
-        ListView lvFriends = (ListView) findViewById(R.id.lv_friends);
-        lvFriends.setAdapter(adapter);
-
-        lvFriends.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Profile item = adapter.getItem(position);
-
-                Intent i = new Intent(FriendsListActivity.this, ProfileActivity.class);
-                i.putExtra("ProfileID", item.getId());
-                startActivity(i);
-            }
-        });
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.menu_friends, menu);
-
-        MenuItem searchItem = menu.findItem(R.id.action_search);
-
-        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-
-        SearchView searchView = null;
-        if (searchItem != null) {
-            searchView = (SearchView) searchItem.getActionView();
-        }
-        if (searchView != null) {
-            searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-        }
-        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
@@ -119,12 +70,22 @@ public class FriendsListActivity extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_heatmap) {
-            Intent i = new Intent(this, HeatmapActivity.class);
-            startActivity(i);
+        if (id == android.R.id.home) {
+            finish();
+        }
+        if (id == R.id.action_edit_profile) {
+            //TODO: remove friend functionality
+            Toast.makeText(OwnProfileActivity.this, "Saved changes", Toast.LENGTH_SHORT).show();
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_own_profile, menu);
+        return true;
     }
 
     private void setupNavigationDrawer() {

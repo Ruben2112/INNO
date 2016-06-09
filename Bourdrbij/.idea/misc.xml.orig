@@ -27,6 +27,14 @@
       </value>
     </option>
   </component>
+<<<<<<< HEAD
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
           <State>
             <id>Android &gt; Lint &gt; Security</id>
           </State>
@@ -36,6 +44,17 @@
           <State>
             <id>Java language level migration aidsJava</id>
           </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>Android</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+  </component>
+=======
+>>>>>>> origin/master
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
     <OptionsSetting value="true" id="Remove" />

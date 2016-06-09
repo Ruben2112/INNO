@@ -13,9 +13,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import org.json.*;
 import com.inno.bourdrbij.R;
-import com.inno.bourdrbij.models.Encounter;
-import com.inno.bourdrbij.models.Event;
-import com.inno.bourdrbij.models.Job;
 import com.inno.bourdrbij.models.Profile;
 import com.inno.bourdrbij.servercommunication.HTTPManager;
 import com.inno.bourdrbij.servercommunication.HTTPRestClient;
@@ -27,7 +24,7 @@ import cz.msebera.android.httpclient.Header;
 import cz.msebera.android.httpclient.client.methods.HttpPatch;
 
 public class LogInActivity extends Activity {
-    int count = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,21 +58,15 @@ public class LogInActivity extends Activity {
             public void onClick(View v) {
                 //Intent i = new Intent(LogInActivity.this, MainActivity.class);
                 //startActivity(i);
-        switch(count){
-            case 0:
-                Profile test = (Profile) HTTPManager.doGet("profile/13");
-                break;
-            case 1:
-                Encounter encounter = (Encounter) HTTPManager.doGet("encounter/1");
-                break;
-            case 2:
-                Job job = (Job)HTTPManager.doGet("job/1");
-                break;
-            case 3:
-                Event event = (Event)HTTPManager.doGet("event/1");
-                break;
-        }
-        count++;
+
+               Profile test = (Profile) HTTPManager.doGet("profile/13");
+                try{
+                    Thread.sleep(3000);
+                    System.out.println("JEUW:" + test.getId());
+                }catch(Exception ex){
+
+                }
+
             }
         });
     }

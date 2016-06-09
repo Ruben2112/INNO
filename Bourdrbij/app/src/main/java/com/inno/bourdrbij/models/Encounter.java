@@ -37,12 +37,12 @@ public class Encounter {
     /**
      * Longitude of encounter.
      */
-    private int longitude;
+    private Float longitude;
 
     /**
      * Latitude of encounter.
      */
-    private int latitude;
+    private Float latitude;
 
     /**
      * Boolean to check if sender confirmed that he wants to be your friend.
@@ -65,24 +65,15 @@ public class Encounter {
         this.receiverConfirm = false;
     }
 
-    public Encounter (int id, Profile receiverProfile, Profile senderProfile, Date date, int longitude, int latitude, int senderConfirm, int receiverConfirm) {
+    public Encounter (int id, Profile receiverProfile, Profile senderProfile, Date date, Float longitude, Float latitude, Boolean senderConfirm, Boolean receiverConfirm) {
         this.id = id;
         this.receiverProfile = receiverProfile;
         this.senderProfile = senderProfile;
-
         this.date = date;
         this.longitude = longitude;
         this.latitude = latitude;
-        if(senderConfirm == 1) {
-            this.senderConfirm = true;
-        } else {
-            this.senderConfirm = false;
-        }
-        if(receiverConfirm == 1) {
-            this.receiverConfirm = true;
-        } else {
-            this.receiverConfirm = false;
-        }
+        this.senderConfirm = senderConfirm;
+        this.receiverConfirm = receiverConfirm;
     }
 
     public int getId() {
@@ -109,11 +100,11 @@ public class Encounter {
         return this.date;
     }
 
-    public int getLongitude() {
+    public Float getLongitude() {
         return this.longitude;
     }
 
-    public int getLatitude() {
+    public Float getLatitude() {
         return this.latitude;
     }
 
@@ -156,40 +147,7 @@ public class Encounter {
      */
     public Encounter getInfo(int meetingID) {
         // TODO: Direct HTTPRestClient to the right address.
-        HTTPRestClient.get("retrievedProfile/" + meetingID, null, new JsonHttpResponseHandler() {
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                try {
-                    if (response.getBoolean("success")) {
-                        JSONObject json = response.getJSONObject("data");
-
-                        int profileIDReceiver = json.getInt("receiverID");
-                        int profileIDSender = json.getInt("senderID");
-                        String dateString = json.getString("date");
-                        DateFormat df = new SimpleDateFormat("");
-                        Date date = df.parse(dateString);
-                        int longitude = json.getInt("longitude");
-                        int latitude = json.getInt("latitude");
-                        int senderConfirm = json.getInt("senderconfirm");
-                        int receiverConfirm = json.getInt("receiverconfirm");
-                        int id = json.getInt("id");
-
-                        Profile receiverProfile = new Profile();
-                        receiverProfile = receiverProfile.getProfile(profileIDReceiver);
-
-                        Profile senderProfile = new Profile();
-                        senderProfile = senderProfile.getProfile(profileIDSender);
-
-                        Encounter.receivedEncounter = new Encounter(id, receiverProfile, senderProfile, date, longitude, latitude, senderConfirm, receiverConfirm);
-                    }
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-
-        });
-        return Encounter.receivedEncounter;
+       return null;
     }
 
     /**
@@ -255,7 +213,7 @@ public class Encounter {
     }
 
     /**
-     * Find profile with [@param} username in server database.
+     * Find profile with [@param] username in server database.
      * @param username
      * @return Profile that matches the [@param]
      */

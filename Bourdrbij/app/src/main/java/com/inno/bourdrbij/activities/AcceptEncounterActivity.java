@@ -1,7 +1,6 @@
 package com.inno.bourdrbij.activities;
 
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -12,16 +11,23 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 
-import com.inno.bourdrbij.models.DrawerItem;
-import com.inno.bourdrbij.adapters.NavigationDrawerAdapter;
 import com.inno.bourdrbij.R;
+import com.inno.bourdrbij.adapters.NavigationDrawerAdapter;
+import com.inno.bourdrbij.models.DrawerItem;
+import com.inno.bourdrbij.models.Encounter;
+import com.inno.bourdrbij.models.Profile;
+import com.inno.bourdrbij.views.MetamorphousTextView;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
-
+/**
+ * Created by sebas on 6/3/2016.
+ */
+public class AcceptEncounterActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -32,29 +38,54 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_encounter);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         toolbar.setTitle(null);
+
         Window window = getWindow();
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.setStatusBarColor(ContextCompat.getColor(this, R.color.statusbar));
+
         setupNavigationDrawer();
-    }
-    @Override
-    protected void onPostCreate(Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-        // Sync the toggle state after onRestoreInstanceState has occurred.
-        mDrawerToggle.syncState();
+        setupMockData();
+
+        Button btnAddFriend = (Button) findViewById(R.id.btnAddFriend);
+        btnAddFriend.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        Button btnDecline = (Button) findViewById(R.id.btnDecline);
+        btnDecline.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        mDrawerToggle.onConfigurationChanged(newConfig);
+
+
+    private void setupMockData() {
+        Profile senderProfile = new Profile();
+        Profile receiveProfile = new Profile();
+        Encounter encounter = new Encounter(senderProfile, receiveProfile);
+
+        MetamorphousTextView textTime = (MetamorphousTextView) findViewById(R.id.tvTimeMetFriend);
+        textTime.setText(encounter.getDate().toString());
+
+        MetamorphousTextView encounterText = (MetamorphousTextView) findViewById(R.id.tvEncounterText);
+        encounterText.setText(encounter.getReceiverProfile().toString());
+
+        ImageView profileImage = (ImageView) findViewById(R.id.ivProfileImage);
+        // TODO: Set image.
     }
 
     private void setupNavigationDrawer() {
@@ -85,32 +116,6 @@ public class MainActivity extends AppCompatActivity {
         mDrawerLayout.addDrawerListener(mDrawerToggle);
     }
 
-    private void selectItem(int position) {
-        DrawerItem item = dataList.get(position);
-        Intent i;
-        switch(item.getItemText()){
-            case "Mijn profiel":
-                i = new Intent(this, OwnProfileActivity.class);
-                startActivity(i);
-                break;
-            case "Klussen":
-                i = new Intent(this, JobsActivity.class);
-                startActivity(i);
-                break;
-            case "Vrienden":
-                i = new Intent(this, FriendsListActivity.class);
-                startActivity(i);
-                break;
-            case "Evenementen":
-                i = new Intent(this, EventsActivity.class);
-                startActivity(i);
-                break;
-        }
-
-        mDrawerList.setItemChecked(position, true);
-        mDrawerLayout.closeDrawer(mDrawerList);
-    }
-
     private void addNavigationItems(ArrayList<DrawerItem> dataList) {
         // add navigationitems
         dataList.add(new DrawerItem("Mijn profiel", ContextCompat.getDrawable(this, R.drawable.ic_account_circle_black_24dp)));
@@ -128,5 +133,22 @@ public class MainActivity extends AppCompatActivity {
                                 long id) {
             selectItem(position);
         }
+    }
+
+    private void selectItem(int position) {
+        DrawerItem item = dataList.get(position);
+        Intent i;
+        switch (item.getItemText()) {
+            case "Klussen":
+                i = new Intent(this, JobsActivity.class);
+                startActivity(i);
+            case "Vrienden":
+                i = new Intent(this, FriendsListActivity.class);
+                startActivity(i);
+                break;
+        }
+
+        mDrawerList.setItemChecked(position, true);
+        mDrawerLayout.closeDrawer(mDrawerList);
     }
 }
