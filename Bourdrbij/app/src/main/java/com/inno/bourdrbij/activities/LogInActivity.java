@@ -11,8 +11,17 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-
+import org.json.*;
 import com.inno.bourdrbij.R;
+import com.inno.bourdrbij.models.Profile;
+import com.inno.bourdrbij.servercommunication.HTTPManager;
+import com.inno.bourdrbij.servercommunication.HTTPRestClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.JsonHttpResponseHandler;
+
+
+import cz.msebera.android.httpclient.Header;
+import cz.msebera.android.httpclient.client.methods.HttpPatch;
 
 public class LogInActivity extends Activity {
 
@@ -47,8 +56,17 @@ public class LogInActivity extends Activity {
         btLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(LogInActivity.this, MainActivity.class);
-                startActivity(i);
+                //Intent i = new Intent(LogInActivity.this, MainActivity.class);
+                //startActivity(i);
+
+               Profile test = (Profile) HTTPManager.doGet("profile/13");
+                try{
+                    Thread.sleep(3000);
+                    System.out.println("JEUW:" + test.getId());
+                }catch(Exception ex){
+
+                }
+
             }
         });
     }

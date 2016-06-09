@@ -57,18 +57,18 @@ public class Profile {
      * @param profession Initializes the profession of the retrievedProfile. Parameter can not be null or empty.
      * @param address Initializes the username of the retrievedProfile. Parameter can not be null or empty.
      */
-    public Profile(String username, String profession, String address, String[] intrests) {
+    public Profile(String username, String profession, String address, String[] interests) {
         this();
         this.changeUsername(username);
         this.changeProfession(profession);
         this.changeAddress(address);
-        this.changeIntrests(intrests);
+        this.changeIntrests(interests);
 
         thisProfile = this;
     }
 
-    public Profile(int id, String username, String profession, String address, String[] intrests) {
-        this(username, profession, address, intrests);
+    public Profile(int id, String username, String profession, String address, String[] interests) {
+        this(username, profession, address, interests);
         this.changeId(id);
 
         thisProfile = this;
