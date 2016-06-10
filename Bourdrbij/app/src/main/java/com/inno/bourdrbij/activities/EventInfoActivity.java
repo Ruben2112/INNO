@@ -1,5 +1,6 @@
 package com.inno.bourdrbij.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,8 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.inno.bourdrbij.R;
+import com.inno.bourdrbij.models.Event;
+import com.inno.bourdrbij.views.MetamorphousTextView;
 
 public class EventInfoActivity extends AppCompatActivity {
 
@@ -24,6 +27,24 @@ public class EventInfoActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setTitle(null);
+
+        Intent intent = getIntent();
+        Event event = (Event) intent.getSerializableExtra("Job");
+
+        MetamorphousTextView txtEventName = (MetamorphousTextView) findViewById(R.id.tv_title);
+        txtEventName.setText(event.getName());
+
+        MetamorphousTextView txtEventDescription = (MetamorphousTextView) findViewById(R.id.tv_description);
+        txtEventDescription.setText(event.getDescription());
+
+        MetamorphousTextView txtEventLocation = (MetamorphousTextView) findViewById(R.id.tv_location);
+        txtEventLocation.setText(event.getLocation());
+
+        MetamorphousTextView txtEventBeginDate = (MetamorphousTextView) findViewById(R.id.tv_begindate);
+        txtEventBeginDate.setText(event.getStartTime().toString());
+
+        MetamorphousTextView txtEventEndDate = (MetamorphousTextView) findViewById(R.id.tv_enddate);
+        txtEventEndDate.setText(event.getEndTime().toString());
 
         Window window = getWindow();
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
