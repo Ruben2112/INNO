@@ -24,6 +24,10 @@ public class User {
         this.inviteCodes = generateInviteCodes();
     }
 
+    public String getUsername() {
+        return this.username;
+    }
+
     public boolean login(String username, String password) {
         if(username.isEmpty() || password.isEmpty()) {
             return false;
@@ -39,11 +43,15 @@ public class User {
         if(username.isEmpty() || password.isEmpty()) {
             return false;
         }
-        boolean result = HTTPManager.doPost("user", username, password);
-        return result;
+        //boolean result = HTTPManager.doPost("user", username, password);
+        return false;
     }
 
     public boolean register(int inviteCode, String username, String password) {
+        if(username.isEmpty() || password.isEmpty() || inviteCode == 0) {
+            return false;
+        }
+        //boolean result = HTTPManager.doPost("user", username, password);
         return false;
     }
 

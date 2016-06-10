@@ -1,6 +1,8 @@
 package com.inno.bourdrbij.activities;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -21,6 +23,7 @@ import com.inno.bourdrbij.adapters.JobsAdapter;
 import com.inno.bourdrbij.adapters.NavigationDrawerAdapter;
 import com.inno.bourdrbij.models.DrawerItem;
 import com.inno.bourdrbij.models.Job;
+import com.inno.bourdrbij.servercommunication.HTTPManager;
 
 import java.util.ArrayList;
 
@@ -49,7 +52,33 @@ public class JobsActivity extends AppCompatActivity {
         window.setStatusBarColor(ContextCompat.getColor(this, R.color.statusbar));
 
         setupNavigationDrawer();
-        setupMockData();
+        // setupMockData();
+        setupDatabaseData();
+    }
+
+    private void setupDatabaseData() {
+        ArrayList<Job> jobs = new ArrayList<>();
+        SharedPreferences sharedPreferences = getSharedPreferences("currentUser", Context.MODE_PRIVATE);
+        int userId = sharedPreferences.getInt("ProfileId", 0);
+        Object jobsFromDB = HTTPManager.doGet("/jobs/" + userId );
+
+        jobs = (ArrayList<Job>) jobsFromDB;
+
+        final JobsAdapter adapter = new JobsAdapter(this, jobs);
+        ListView lvJobs = (ListView) findViewById(R.id.lv_jobs);
+        lvJobs.setAdapter(adapter);
+
+        lvJobs.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Job item = adapter.getItem(position);
+
+                Intent intent = new Intent(JobsActivity.this, JobInfoActivity.class);
+                intent.putExtra("Job", item);
+                startActivity(intent);
+            }
+        });
     }
 
     private void setupMockData() {
@@ -60,6 +89,9 @@ public class JobsActivity extends AppCompatActivity {
         jobs.add(new Job(0, "Op zoek naar kapper", "", ""));
         jobs.add(new Job(0, "Reparatie halsketting", "", ""));
         jobs.add(new Job(0, "Fiets kapot", "", ""));
+
+        SharedPreferences sharedPreferences = getSharedPreferences("currentUser", Context.MODE_PRIVATE);
+        int userId = sharedPreferences.getInt("ProfileId", 0);
 
         final JobsAdapter adapter = new JobsAdapter(this, jobs);
         ListView lvJobs = (ListView) findViewById(R.id.lv_jobs);

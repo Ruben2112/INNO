@@ -14,6 +14,8 @@ import android.view.WindowManager;
 import android.widget.Button;
 
 import com.inno.bourdrbij.R;
+import com.inno.bourdrbij.models.Job;
+import com.inno.bourdrbij.views.MetamorphousTextView;
 
 public class JobInfoActivity extends AppCompatActivity {
 
@@ -30,6 +32,18 @@ public class JobInfoActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setTitle(null);
 
+        Intent intent = getIntent();
+        Job job = (Job) intent.getSerializableExtra("Job");
+
+        MetamorphousTextView txtJobName = (MetamorphousTextView) findViewById(R.id.et_title);
+        txtJobName.setText(job.getName());
+
+        MetamorphousTextView txtJobDescription = (MetamorphousTextView) findViewById(R.id.et_description);
+        txtJobDescription.setText(job.getDescription());
+
+        MetamorphousTextView txtJobReward = (MetamorphousTextView) findViewById(R.id.et_reward);
+        txtJobDescription.setText(job.getReward());
+
         Button btRecommend = (Button) findViewById(R.id.bt_recommend);
         Button btSendMessage = (Button) findViewById(R.id.bt_send_message);
 
@@ -44,6 +58,7 @@ public class JobInfoActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
 
 
         Window window = getWindow();

@@ -2,6 +2,7 @@ package com.inno.bourdrbij.adapters;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,8 @@ import android.widget.ArrayAdapter;
 
 import com.inno.bourdrbij.R;
 import com.inno.bourdrbij.models.Job;
+import com.inno.bourdrbij.models.User;
+import com.inno.bourdrbij.servercommunication.HTTPManager;
 import com.inno.bourdrbij.views.MetamorphousTextView;
 
 import java.util.List;
@@ -40,8 +43,13 @@ public class JobsAdapter extends ArrayAdapter<Job> {
             viewHolder.tvJobStarter = (MetamorphousTextView) view.findViewById(R.id.tv_job_starter);
             viewHolder.tvJobTitle = (MetamorphousTextView) view.findViewById(R.id.tv_job_title);
 
-            //TODO: get properties of job
-            //viewHolder.tvJobStarter.setText(job.getProfile().getName());
+
+            SharedPreferences sharedPreferences = context.getSharedPreferences("currentUser", Context.MODE_PRIVATE);
+            int userId = sharedPreferences.getInt("ProfileId", 0);
+            Object userFromDB = HTTPManager.doGet("/user/" + userId);
+            User user = (User) userFromDB;
+
+            viewHolder.tvJobStarter.setText(user.getUsername());
             viewHolder.tvJobTitle.setText(job.getName());
         }
         return view;

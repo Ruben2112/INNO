@@ -1,9 +1,11 @@
 package com.inno.bourdrbij.models;
 
+import java.io.Serializable;
+
 /**
  * Created by sebas on 5/20/2016.
  */
-public class Job {
+public class Job implements Serializable {
 
     private int id;
     private int ownerProfileId;
