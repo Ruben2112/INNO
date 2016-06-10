@@ -39,8 +39,8 @@ public class User {
         if(username.isEmpty() || password.isEmpty()) {
             return false;
         }
-        boolean result = HTTPManager.doPost("user", username, password);
-        return result;
+        //boolean result = HTTPManager.doPost("user", username, password);
+        return true;
     }
 
     public boolean register(int inviteCode, String username, String password) {
