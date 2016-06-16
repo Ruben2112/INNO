@@ -11,13 +11,13 @@ public class Event {
     private int id;
     private int ownerProfileID;
     private ArrayList<Integer> participants;
-    private String location;
+    private int location;
     private String name;
     private String description;
     private Date startTime;
     private Date endTime;
 
-    public Event(int ownerProfileID, ArrayList<Integer> participants, String location, String name, String description, Date startTime, Date endTime ) {
+    public Event(int ownerProfileID, ArrayList<Integer> participants, int location, String name, String description, Date startTime, Date endTime ) {
         this.ownerProfileID = ownerProfileID;
         this.participants = participants;
         this.location = location;
@@ -29,7 +29,7 @@ public class Event {
 
     public void addFriends(ArrayList<Integer> friendIDs)
     {
-
+        //Todo: how to?
     }
 
     public int getId() {
@@ -52,15 +52,15 @@ public class Event {
 
     public void setParticipants(ArrayList<Integer> participants) { this.participants = participants; }
 
-    public String getLocation() { return location; }
+    public Integer getLocation() { return location; }
 
-    public void setLocation(String location) { this.location = location; }
+    public void setLocation(Integer location) { this.location = location; }
 
-    public String getAddressid() {
+    public Integer getAddressid() {
         return location;
     }
 
-    public void setAddressid(String location) {
+    public void setAddressid(Integer location) {
         this.location = location;
     }
 

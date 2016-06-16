@@ -30,6 +30,10 @@ public class HTTPRestClient {
     public static void put(String url, RequestParams params, AsyncHttpResponseHandler responseHandler) {
         client.put(getAbsoluteUrl(url), params, responseHandler);
     }
+
+    public static void delete(String url, RequestParams params, AsyncHttpResponseHandler responseHandler){
+        client.delete(getAbsoluteUrl(url), params, responseHandler);
+    }
     private static String getAbsoluteUrl(String relativeUrl) {
         return BASE_URL + relativeUrl;
     }
