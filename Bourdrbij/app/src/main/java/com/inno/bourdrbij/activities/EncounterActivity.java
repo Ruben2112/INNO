@@ -21,11 +21,11 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.inno.bourdrbij.R;
 import com.inno.bourdrbij.adapters.NavigationDrawerAdapter;
 import com.inno.bourdrbij.models.DrawerItem;
 import com.inno.bourdrbij.models.Encounter;
-import com.inno.bourdrbij.models.Profile;
 import com.inno.bourdrbij.views.MetamorphousTextView;
 
 import java.util.ArrayList;
@@ -41,6 +41,8 @@ public class EncounterActivity extends AppCompatActivity implements OnMapReadyCa
     private Toolbar toolbar;
     private ArrayList<DrawerItem> dataList;
     private GoogleMap mMap;
+
+    private Encounter encounter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,33 +64,21 @@ public class EncounterActivity extends AppCompatActivity implements OnMapReadyCa
         mapFragment.getMapAsync(this);
 
         setupNavigationDrawer();
-        setupMockData();
 
-        Button btnInvite = (Button) findViewById(R.id.btnInvite);
-        btnInvite.setOnClickListener(new View.OnClickListener() {
+        //TODO: Encounters ophalen, encounter API bestaat nog niet
 
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-        Button btnIgnore = (Button) findViewById(R.id.btnIgnore);
-        btnIgnore.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
+        setupViews();
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // move the camera
-        LatLng EINDHOVUUUUH = new LatLng(51.451762, 5.481344);
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(EINDHOVUUUUH, 12));
+        if (encounter != null){
+            LatLng encounterLocation = new LatLng(encounter.getLatitude(), encounter.getLongitude());
+            mMap.addMarker(new MarkerOptions().position(encounterLocation));
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(encounterLocation, 12));
+        }
     }
 
     @Override
@@ -104,20 +94,35 @@ public class EncounterActivity extends AppCompatActivity implements OnMapReadyCa
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
 
-    private void setupMockData() {
-        Profile senderProfile = new Profile();
-        Profile receiveProfile = new Profile();
-        Encounter encounter = new Encounter(senderProfile, receiveProfile);
+    private void setupViews() {
+        if (encounter != null) {
+            Button btnInvite = (Button) findViewById(R.id.btnInvite);
+            btnInvite.setOnClickListener(new View.OnClickListener() {
 
-        MetamorphousTextView textTime = (MetamorphousTextView) findViewById(R.id.tvTimeMet);
-        textTime.setText(encounter.getDate().toString());
+                @Override
+                public void onClick(View v) {
+                    encounter.invite(encounter.getReceiverProfile().getUsername());
+                }
+            });
+            Button btnIgnore = (Button) findViewById(R.id.btnIgnore);
+            btnIgnore.setOnClickListener(new View.OnClickListener() {
 
-        MetamorphousTextView encounterText = (MetamorphousTextView) findViewById(R.id.tvEncounterText);
-        if (encounter.getReceiverProfile().getUsername() != null) {
-            encounterText.setText(encounter.getReceiverProfile().getUsername());
+                @Override
+                public void onClick(View v) {
+                    encounter.ignore(encounter.getReceiverProfile().getUsername());
+                }
+            });
+
+            MetamorphousTextView textTime = (MetamorphousTextView) findViewById(R.id.tvTimeMet);
+            textTime.setText(encounter.getDate().toString());
+
+            MetamorphousTextView encounterText = (MetamorphousTextView) findViewById(R.id.tvEncounterText);
+            if (encounter.getReceiverProfile().getUsername() != null) {
+                encounterText.setText(encounter.getReceiverProfile().getUsername());
+            }
+            ImageView profileImage = (ImageView) findViewById(R.id.ivProfileImage);
+            // TODO: Set image. imagePath String in Profile moet een bytearray returnen
         }
-        ImageView profileImage = (ImageView) findViewById(R.id.ivProfileImage);
-        // TODO: Set image.
     }
 
     private void setupNavigationDrawer() {

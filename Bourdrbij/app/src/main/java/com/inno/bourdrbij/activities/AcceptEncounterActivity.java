@@ -15,11 +15,17 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.inno.bourdrbij.R;
 import com.inno.bourdrbij.adapters.NavigationDrawerAdapter;
 import com.inno.bourdrbij.models.DrawerItem;
 import com.inno.bourdrbij.models.Encounter;
-import com.inno.bourdrbij.models.Profile;
 import com.inno.bourdrbij.views.MetamorphousTextView;
 
 import java.util.ArrayList;
@@ -27,13 +33,16 @@ import java.util.ArrayList;
 /**
  * Created by sebas on 6/3/2016.
  */
-public class AcceptEncounterActivity extends AppCompatActivity {
+public class AcceptEncounterActivity extends AppCompatActivity implements OnMapReadyCallback {
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
 
     private Toolbar toolbar;
     private ArrayList<DrawerItem> dataList;
+    private GoogleMap mMap;
+
+    private Encounter encounter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,42 +59,58 @@ public class AcceptEncounterActivity extends AppCompatActivity {
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.setStatusBarColor(ContextCompat.getColor(this, R.color.statusbar));
 
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
+
         setupNavigationDrawer();
-        setupMockData();
 
-        Button btnAddFriend = (Button) findViewById(R.id.btnAddFriend);
-        btnAddFriend.setOnClickListener(new View.OnClickListener() {
+        //TODO: Encounters ophalen, encounter API bestaat nog niet
 
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-        Button btnDecline = (Button) findViewById(R.id.btnDecline);
-        btnDecline.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
+        setupViews();
     }
 
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
 
+        if (encounter != null) {
+            LatLng encounterLocation = new LatLng(encounter.getLatitude(), encounter.getLongitude());
+            mMap.addMarker(new MarkerOptions().position(encounterLocation));
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(encounterLocation, 12));
+        }
+    }
 
-    private void setupMockData() {
-        Profile senderProfile = new Profile();
-        Profile receiveProfile = new Profile();
-        Encounter encounter = new Encounter(senderProfile, receiveProfile);
+    private void setupViews() {
+        if (encounter != null) {
+            Button btnAddFriend = (Button) findViewById(R.id.btnAddFriend);
+            btnAddFriend.setOnClickListener(new View.OnClickListener() {
 
-        MetamorphousTextView textTime = (MetamorphousTextView) findViewById(R.id.tvTimeMetFriend);
-        textTime.setText(encounter.getDate().toString());
+                @Override
+                public void onClick(View v) {
+                    encounter.accept(encounter.getId());
+                }
+            });
+            Button btnDecline = (Button) findViewById(R.id.btnDecline);
+            btnDecline.setOnClickListener(new View.OnClickListener() {
 
-        MetamorphousTextView encounterText = (MetamorphousTextView) findViewById(R.id.tvEncounterText);
-        encounterText.setText(encounter.getReceiverProfile().toString());
+                @Override
+                public void onClick(View v) {
+                    encounter.reject(encounter.getId());
+                }
+            });
 
-        ImageView profileImage = (ImageView) findViewById(R.id.ivProfileImage);
-        // TODO: Set image.
+            MetamorphousTextView textTime = (MetamorphousTextView) findViewById(R.id.tvTimeMetFriend);
+            textTime.setText(encounter.getDate().toString());
+
+            MetamorphousTextView encounterText = (MetamorphousTextView) findViewById(R.id.tvEncounterText);
+            encounterText.setText(encounter.getReceiverProfile().toString());
+
+            ImageView profileImage = (ImageView) findViewById(R.id.ivProfileImage);
+
+            MapView map = (MapView) findViewById(R.id.map);
+            // TODO: Set image. imagePath String in Profile moet een bytearray zijn
+        }
     }
 
     private void setupNavigationDrawer() {
