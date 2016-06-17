@@ -8,7 +8,7 @@ import com.loopj.android.http.*;
  */
 public class HTTPRestClient {
 
-    private static final String BASE_URL = "http://192.168.1.168/public/";
+    private static final String BASE_URL = "http://145.93.140.200/public/";
 
     private static AsyncHttpClient client = new AsyncHttpClient();
 
@@ -29,6 +29,10 @@ public class HTTPRestClient {
 
     public static void put(String url, RequestParams params, AsyncHttpResponseHandler responseHandler) {
         client.put(getAbsoluteUrl(url), params, responseHandler);
+    }
+
+    public static void delete(String url, RequestParams params, AsyncHttpResponseHandler responseHandler){
+        client.delete(getAbsoluteUrl(url), params, responseHandler);
     }
     private static String getAbsoluteUrl(String relativeUrl) {
         return BASE_URL + relativeUrl;

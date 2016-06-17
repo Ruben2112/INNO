@@ -5,7 +5,12 @@ import com.inno.bourdrbij.models.Event;
 import com.inno.bourdrbij.models.Job;
 import com.inno.bourdrbij.models.Profile;
 import com.loopj.android.http.JsonHttpResponseHandler;
+<<<<<<< Updated upstream
+=======
 import com.loopj.android.http.RequestParams;
+
+>>>>>>> Stashed changes
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -19,8 +24,13 @@ import cz.msebera.android.httpclient.Header;
  */
 public class HTTPManager {
     static Object result;
-    static Object postResult;
+<<<<<<< Updated upstream
+
     public static Object doGet(final String url) {
+=======
+    static Object postResult;
+    public static Object doGet(final String url){
+>>>>>>> Stashed changes
         //Object result = null;
         HTTPRestClient.get(url, null, new JsonHttpResponseHandler() {
 
@@ -155,6 +165,9 @@ public class HTTPManager {
         return result;
     }
 
+<<<<<<< Updated upstream
+    private static Date createDateObject(String dbDate) {
+=======
     public static Object doPost(final String url, RequestParams paramaters){
         postResult = null;
 
@@ -183,7 +196,8 @@ public class HTTPManager {
         return postResult;
     }
 
-    private static Date createDateObject(String dbDate) {
+    private static Date createDateObject(String dbDate){
+>>>>>>> Stashed changes
         Date result = new Date();
         result.setYear(Integer.parseInt(dbDate.substring(0, 3)));
         result.setMonth(Integer.parseInt(dbDate.substring(5, 6)));

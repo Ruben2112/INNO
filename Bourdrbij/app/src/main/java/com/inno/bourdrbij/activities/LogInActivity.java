@@ -16,6 +16,7 @@ import android.widget.EditText;
 
 import com.inno.bourdrbij.R;
 import com.inno.bourdrbij.servercommunication.HTTPManager;
+import com.loopj.android.http.RequestParams;
 
 public class LogInActivity extends Activity {
     int count = 0;
@@ -34,6 +35,9 @@ public class LogInActivity extends Activity {
         Button btLogin = (Button) findViewById(R.id.bt_login);
         final EditText etEmail = (EditText) findViewById(R.id.et_email);
         final EditText etPassword = (EditText) findViewById(R.id.et_password);
+
+
+
 
         Typeface mm = Typeface.createFromAsset(getAssets(), "fonts/Metamorphous-Regular.otf");
         btLogin.setTypeface(mm);
@@ -56,6 +60,11 @@ public class LogInActivity extends Activity {
 
                     Intent i = new Intent(LogInActivity.this, OwnProfileActivity.class);
                     startActivity(i);
+                    RequestParams params = new RequestParams();
+                    params.add("profileId","13");
+                    params.add("lon", "100");
+                    params.add("lat", "200");
+                    HTTPManager.doPost("updatelocation", params);
 
                     // temporarily store placeholder user id for current logged in user
                     SharedPreferences sharedPreferences = getSharedPreferences("currentUser", Context.MODE_PRIVATE);

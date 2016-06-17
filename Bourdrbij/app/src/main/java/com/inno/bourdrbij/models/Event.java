@@ -30,7 +30,7 @@ public class Event implements Serializable {
 
     public void addFriends(ArrayList<Integer> friendIDs)
     {
-
+        //Todo: how to?
     }
 
     public int getId() {

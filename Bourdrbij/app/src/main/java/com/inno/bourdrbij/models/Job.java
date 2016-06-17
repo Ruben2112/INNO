@@ -41,8 +41,7 @@ public class Job implements Serializable {
         this.reward = reward;
     }
 
-    public void AcceptJob(int id, String username){}
-
+    public void AcceptJob(int id, String username)
     {
 
     }
