@@ -8,6 +8,7 @@ import com.loopj.android.http.RequestParams;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -16,7 +17,7 @@ import cz.msebera.android.httpclient.Header;
 /**
  * Created by sebas on 5/20/2016.
  */
-public class Profile {
+public class Profile implements Serializable {
     public static Profile retrievedProfile;
     public static Profile thisProfile;
     // Values
@@ -80,6 +81,29 @@ public class Profile {
         return this.id;
     }
 
+    public String getProfession() {
+        return this.profession;
+    }
+
+    public String[] getIntrests() {
+        return this.intrests;
+    }
+
+    public String getAddress() {
+        return this.address;
+    }
+
+    public Collection<Event> getEventsList() {
+        return this.eventsList;
+    }
+
+    public Collection<Encounter> getEncountersList() {
+        return this.encountersList;
+    }
+
+    public Collection<Profile> getFriendsList() {
+        return this.friendsList;
+    }
     /**
      * Retrieve retrievedProfile from server.
      * @param id

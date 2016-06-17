@@ -1,6 +1,8 @@
 package com.inno.bourdrbij.activities;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -15,11 +17,13 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.inno.bourdrbij.R;
+import com.inno.bourdrbij.models.GlobalData;
 import com.inno.bourdrbij.models.Profile;
 
 public class ProfileActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
+    private Profile userProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +40,11 @@ public class ProfileActivity extends AppCompatActivity {
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.setStatusBarColor(ContextCompat.getColor(this, R.color.statusbar));
+
+        userProfile = GlobalData.create().getUserProfile();
+
+        
+
     }
 
     @Override

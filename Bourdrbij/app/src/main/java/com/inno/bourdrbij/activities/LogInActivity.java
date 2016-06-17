@@ -15,6 +15,9 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.inno.bourdrbij.R;
+import com.inno.bourdrbij.models.GlobalData;
+import com.inno.bourdrbij.models.Profile;
+import com.inno.bourdrbij.models.User;
 import com.inno.bourdrbij.servercommunication.HTTPManager;
 import com.loopj.android.http.RequestParams;
 
@@ -37,8 +40,6 @@ public class LogInActivity extends Activity {
         final EditText etPassword = (EditText) findViewById(R.id.et_password);
 
 
-
-
         Typeface mm = Typeface.createFromAsset(getAssets(), "fonts/Metamorphous-Regular.otf");
         btLogin.setTypeface(mm);
         btRegister.setTypeface(mm);
@@ -55,26 +56,50 @@ public class LogInActivity extends Activity {
         btLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (etEmail.getText() != null && etPassword.getText() != null) {
+                etEmail.getText();
 
-
-                    Intent i = new Intent(LogInActivity.this, OwnProfileActivity.class);
-                    startActivity(i);
+                if (!etEmail.getText().toString().matches("") && !etPassword.getText().toString().matches("")) {
                     RequestParams params = new RequestParams();
-                    params.add("profileId","13");
+                    params.add("profileId", "13");
                     params.add("lon", "100");
                     params.add("lat", "200");
-                    HTTPManager.doPost("updatelocation", params);
+                    //HTTPManager.doPost("updatelocation", params);
+
+                    // Login user.
+                    params = new RequestParams();
+                    String email = etEmail.getText().toString();
+                    String password =  etPassword.getText().toString();
+
+                    Object objectUser = HTTPManager.doPost("login?email=" + email + "&password=" + password, null);
+                    if (objectUser != null) {
+                        User loggedInUser = (User) objectUser;
+                        GlobalData data = GlobalData.create();
+                        data.setUser(loggedInUser);
+                        // Get logged in profile
+                        params.add("profileId", String.valueOf(loggedInUser.getProfileId()));
+
+                        Object objectProfile = HTTPManager.doPost("/profile/", params);
+                        Profile userProfile = (Profile) objectProfile;
+                        data.setUserProfile(userProfile);
+                        Intent i = new Intent(LogInActivity.this, OwnProfileActivity.class);
+                        i.putExtra("Profile", userProfile);
+                        startActivity(i);
+                    }
+                    etEmail.setError("Invalid credentials");
+                    etPassword.setError("Invalid credentials");
+                }
+                else {
+                    if(etEmail.getText().toString().matches("")) {
+                        etEmail.setError("Fill in all fields");
+                    }
+                    else {
+                        etPassword.setError("Fill in all fields");
+                    }
 
 
-                    // temporarily store placeholder user id for current logged in user
-                    SharedPreferences sharedPreferences = getSharedPreferences("currentUser", Context.MODE_PRIVATE);
-                    sharedPreferences.edit().putInt("UserId", 666).apply();
-                } else {
-                    etEmail.setError("Fill in all fields");
-                    etPassword.setError("Fill in all fields");
                 }
             }
+
         });
     }
 
