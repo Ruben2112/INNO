@@ -24,6 +24,12 @@ public class User {
         this.inviteCodes = generateInviteCodes();
     }
 
+    public User(String username, String password, int[] inviteCodes) {
+        this.username = username;
+        this.password = password;
+        this.inviteCodes = inviteCodes;
+    }
+
     public String getUsername() {
         return this.username;
     }

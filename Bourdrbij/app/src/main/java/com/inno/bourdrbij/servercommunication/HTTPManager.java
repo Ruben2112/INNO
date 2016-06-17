@@ -4,6 +4,7 @@ import com.inno.bourdrbij.models.Encounter;
 import com.inno.bourdrbij.models.Event;
 import com.inno.bourdrbij.models.Job;
 import com.inno.bourdrbij.models.Profile;
+import com.inno.bourdrbij.models.User;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import org.json.JSONArray;
@@ -161,6 +162,8 @@ public class HTTPManager {
         HTTPRestClient.post(url, paramaters,new JsonHttpResponseHandler(){
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+
+
                 try{
 
                     if(url.contains("login")){
@@ -168,7 +171,14 @@ public class HTTPManager {
 
                         JSONObject jsonProfile = (JSONObject)response.get(0);
                         System.out.println(jsonProfile.toString());
+                        JSONObject jsonUser = (JSONObject)jsonProfile.get("user");
+                        System.out.println(jsonUser.toString());
 
+                        int[] inviteCodes = new int[1];
+                        inviteCodes[0] = jsonUser.getInt("inviteCode");
+
+                        User user = new User(jsonUser.getString("email"), jsonUser.getString("password"), inviteCodes);
+                        postResult = user;
                     }
                 }catch(Exception ex){
                     System.out.println(ex.getMessage());
