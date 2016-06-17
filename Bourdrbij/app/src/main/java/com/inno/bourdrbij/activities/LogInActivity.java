@@ -66,9 +66,10 @@ public class LogInActivity extends Activity {
                     params.add("lat", "200");
                     HTTPManager.doPost("updatelocation", params);
 
+
                     // temporarily store placeholder user id for current logged in user
                     SharedPreferences sharedPreferences = getSharedPreferences("currentUser", Context.MODE_PRIVATE);
-                    sharedPreferences.edit().putInt("ProfileId", 666).apply();
+                    sharedPreferences.edit().putInt("UserId", 666).apply();
                 } else {
                     etEmail.setError("Fill in all fields");
                     etPassword.setError("Fill in all fields");
