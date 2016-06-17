@@ -87,7 +87,7 @@ public class HTTPManager {
                         String pAddress = address.getString("street") + " " + address.getString("number") + ", " + address.getString("city") + ", " + address.getString("country");
 
                         //location??? HOE WELK FORMAT? < ADDRESS STRING
-                        //deelnemers?? NOG EVEN FIXEN IN DB
+                        //deelnemers?? NOG EVEN FIXEN IN DBg
 
                         Event event = new Event(pOwnerProfileId, new ArrayList<Integer>(), pAddress, pName, pDescription, pStartTime, pEndTime);
                         result = (Object) null;

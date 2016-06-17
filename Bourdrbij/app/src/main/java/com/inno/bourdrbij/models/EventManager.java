@@ -27,7 +27,7 @@ public class EventManager {
         return null;
     }
 
-    public static Event NewEvent(int ownerProfileID, int addressID, String name, String description, Date startTime, Date endTime, ArrayList<Integer> userIDs){
+    public static Event NewEvent(int ownerProfileID, String addressID, String name, String description, Date startTime, Date endTime, ArrayList<Integer> userIDs){
         RequestParams params = new RequestParams();
 
 
