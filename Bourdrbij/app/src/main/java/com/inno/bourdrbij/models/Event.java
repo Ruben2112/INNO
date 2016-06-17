@@ -1,12 +1,13 @@
 package com.inno.bourdrbij.models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
 /**
  * Created by sebas on 5/20/2016.
  */
-public class Event {
+public class Event implements Serializable {
 
     private int id;
     private int ownerProfileID;

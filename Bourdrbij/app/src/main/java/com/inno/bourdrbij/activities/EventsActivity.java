@@ -1,6 +1,8 @@
 package com.inno.bourdrbij.activities;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -18,9 +20,11 @@ import android.widget.ListView;
 
 import com.inno.bourdrbij.R;
 import com.inno.bourdrbij.adapters.EventsAdapter;
+import com.inno.bourdrbij.adapters.JobsAdapter;
 import com.inno.bourdrbij.adapters.NavigationDrawerAdapter;
 import com.inno.bourdrbij.models.DrawerItem;
 import com.inno.bourdrbij.models.Event;
+import com.inno.bourdrbij.servercommunication.HTTPManager;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -50,7 +54,33 @@ public class EventsActivity extends AppCompatActivity {
         window.setStatusBarColor(ContextCompat.getColor(this, R.color.statusbar));
 
         setupNavigationDrawer();
-        setupMockData();
+        //setupMockData();
+        setupDatabaseData();
+    }
+
+    private void setupDatabaseData() {
+        ArrayList<Event> events = new ArrayList<>();
+        SharedPreferences sharedPreferences = getSharedPreferences("currentUser", Context.MODE_PRIVATE);
+        int userId = sharedPreferences.getInt("ProfileId", 0);
+        Object eventsFromDB = HTTPManager.doGet("/events/" + userId);
+
+        events = (ArrayList<Event>) eventsFromDB;
+
+        final EventsAdapter adapter = new EventsAdapter(this, events);
+        ListView lvEvents = (ListView) findViewById(R.id.lv_events);
+        lvEvents.setAdapter(adapter);
+
+        lvEvents.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Event item = adapter.getItem(position);
+
+                Intent intent = new Intent(EventsActivity.this, EventInfoActivity.class);
+                intent.putExtra("Event", item);
+                startActivity(intent);
+            }
+        });
     }
 
     private void setupMockData() {
