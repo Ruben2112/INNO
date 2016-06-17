@@ -162,12 +162,14 @@ public class HTTPManager {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
                 try{
-                    System.out.println("JSONArray");
 
-                    JSONObject jsonProfile = (JSONObject)response.get(0);
-                    JSONObject data = (JSONObject)jsonProfile.get("data");
-                    System.out.println(data.toString());
+                    if(url.contains("login")){
+                        System.out.println("JSONArray");
 
+                        JSONObject jsonProfile = (JSONObject)response.get(0);
+                        System.out.println(jsonProfile.toString());
+
+                    }
                 }catch(Exception ex){
                     System.out.println(ex.getMessage());
                 }
