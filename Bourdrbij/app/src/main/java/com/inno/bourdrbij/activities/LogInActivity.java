@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.inno.bourdrbij.R;
+import com.inno.bourdrbij.servercommunication.HTTPManager;
 
 public class LogInActivity extends Activity {
     int count = 0;
@@ -43,24 +44,26 @@ public class LogInActivity extends Activity {
         btRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    Intent i = new Intent(LogInActivity.this, RegisterActivity.class);
-                    startActivity(i);
+                Intent i = new Intent(LogInActivity.this, RegisterActivity.class);
+                startActivity(i);
             }
         });
         btLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (etEmail.getText() != null && etPassword.getText() != null) {
-                Intent i = new Intent(LogInActivity.this, OwnProfileActivity.class);
-                startActivity(i);
 
-                // temporarily store placeholder user id for current logged in user
-                SharedPreferences sharedPreferences = getSharedPreferences("currentUser", Context.MODE_PRIVATE);
-                sharedPreferences.edit().putInt("ProfileId", 666).apply();
-            } else {
-                etEmail.setError("Fill in all fields");
-                etPassword.setError("Fill in all fields");
-            }
+
+                    Intent i = new Intent(LogInActivity.this, OwnProfileActivity.class);
+                    startActivity(i);
+
+                    // temporarily store placeholder user id for current logged in user
+                    SharedPreferences sharedPreferences = getSharedPreferences("currentUser", Context.MODE_PRIVATE);
+                    sharedPreferences.edit().putInt("ProfileId", 666).apply();
+                } else {
+                    etEmail.setError("Fill in all fields");
+                    etPassword.setError("Fill in all fields");
+                }
             }
         });
     }
