@@ -162,8 +162,6 @@ public class HTTPManager {
         HTTPRestClient.post(url, paramaters,new JsonHttpResponseHandler(){
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-
-
                 try{
 
                     if(url.contains("login")){
@@ -174,10 +172,10 @@ public class HTTPManager {
                         JSONObject jsonUser = (JSONObject)jsonProfile.get("user");
                         System.out.println(jsonUser.toString());
 
-                        int[] inviteCodes = new int[1];
-                        inviteCodes[0] = jsonUser.getInt("inviteCode");
+                        int inviteCode = 0;
+                        inviteCode = jsonUser.getInt("inviteCode");
 
-                        User user = new User(jsonUser.getString("email"), jsonUser.getString("password"), inviteCodes);
+                        User user = new User(jsonUser.getString("email"), jsonUser.getString("password"), inviteCode);
                         postResult = user;
                     }
                 }catch(Exception ex){

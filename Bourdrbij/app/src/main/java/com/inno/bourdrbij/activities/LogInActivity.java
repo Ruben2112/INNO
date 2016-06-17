@@ -70,8 +70,8 @@ public class LogInActivity extends Activity {
                     String email = etEmail.getText().toString();
                     String password =  etPassword.getText().toString();
 
-                    Object objectUser = HTTPManager.doPost("login?email=" + email + "&password=" + password, null);
-                    if (objectUser != null) {
+                    Object objectUser = HTTPManager.doPost("user/login?email=" + email + "&password=" + password, null);
+                    while (objectUser != null) {
                         User loggedInUser = (User) objectUser;
                         GlobalData data = GlobalData.create();
                         data.setUser(loggedInUser);

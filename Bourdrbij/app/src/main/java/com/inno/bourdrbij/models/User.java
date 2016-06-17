@@ -29,10 +29,10 @@ public class User {
     public int getId() {
         return this.id;
     }
-    public User(String username, String password, int[] inviteCodes) {
+    public User(String username, String password, int inviteCode) {
         this.username = username;
         this.password = password;
-        this.inviteCodes = inviteCodes;
+        this.inviteCode = inviteCode;
     }
 
     public String getUsername() {
