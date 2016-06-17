@@ -164,11 +164,28 @@ public class AcceptEncounterActivity extends AppCompatActivity implements OnMapR
         DrawerItem item = dataList.get(position);
         Intent i;
         switch (item.getItemText()) {
+            case "Mijn profiel":
+                i = new Intent(this, OwnProfileActivity.class);
+                startActivity(i);
+                break;
             case "Klussen":
                 i = new Intent(this, JobsActivity.class);
                 startActivity(i);
+                break;
             case "Vrienden":
                 i = new Intent(this, FriendsListActivity.class);
+                startActivity(i);
+                break;
+            case "Evenementen":
+                i = new Intent(this, EventsActivity.class);
+                startActivity(i);
+                break;
+            case "Ontmoetingen":
+                i = new Intent(this, EncounterActivity.class);
+                startActivity(i);
+                break;
+            case "Invites":
+                i = new Intent(this, InviteActivity.class);
                 startActivity(i);
                 break;
         }

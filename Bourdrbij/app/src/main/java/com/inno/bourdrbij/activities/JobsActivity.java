@@ -197,6 +197,10 @@ public class JobsActivity extends AppCompatActivity {
                 i = new Intent(this, EncounterActivity.class);
                 startActivity(i);
                 break;
+            case "Invites":
+                i = new Intent(this, InviteActivity.class);
+                startActivity(i);
+                break;
         }
 
         mDrawerList.setItemChecked(position, true);

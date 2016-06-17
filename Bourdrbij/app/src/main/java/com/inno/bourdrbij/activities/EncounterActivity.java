@@ -196,6 +196,10 @@ public class EncounterActivity extends AppCompatActivity implements OnMapReadyCa
                 i = new Intent(this, EncounterActivity.class);
                 startActivity(i);
                 break;
+            case "Invites":
+                i = new Intent(this, InviteActivity.class);
+                startActivity(i);
+                break;
         }
 
         mDrawerList.setItemChecked(position, true);
