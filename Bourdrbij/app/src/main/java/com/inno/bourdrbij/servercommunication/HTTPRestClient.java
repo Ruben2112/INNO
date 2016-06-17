@@ -8,7 +8,7 @@ import com.loopj.android.http.*;
  */
 public class HTTPRestClient {
 
-    private static final String BASE_URL = "http://192.168.1.168/public/";
+    private static final String BASE_URL = "http://145.93.140.200/public/";
 
     private static AsyncHttpClient client = new AsyncHttpClient();
 
